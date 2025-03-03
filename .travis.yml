@@ -41,6 +41,6 @@ deploy:
   env: dishaenv
   bucket_name: elasticbeanstalk-us-east-2-639584540069
   on:
-    repo: Dishagaonkar/tavis
+    repo: Dishagaonkar/travis
     branch: main
   skip_cleanup: 'true'
