@@ -30,6 +30,9 @@ after_scripts:
 #   - zip -r ../deploy.zip .  # Package the entire project contents (not the directory itself)
 #   - cd ..  # Move back to the root
 
+before_deploy:
+  - zip -r deploy.zip .
+
 
 
 deploy:
