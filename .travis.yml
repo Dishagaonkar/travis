@@ -1,0 +1,46 @@
+dist: focal
+language: python
+python:
+  - "3.10"
+  - "3.11"
+
+before_install:
+  - pip install --upgrade pip
+  - pip install "setuptools<59" "wheel" 
+  - pip install "awsebcli==3.20.10" 
+install:
+  - pip install -r requirements.txt
+  - pip install black flake8 coverage coveralls
+
+
+
+script:
+  - black --check . 
+  - flake8 --max-line-length=150 swe1Project/ 
+  - coverage run manage.py test 
+  - env
+
+after_scripts:
+  - coveralls
+
+
+
+# before_deploy:
+#   - cd swe1Project  # Move inside the correct project directory
+#   - zip -r ../deploy.zip .  # Package the entire project contents (not the directory itself)
+#   - cd ..  # Move back to the root
+
+
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ID
+  secret_access_key: $AWS_KEY
+  region: us-east-2
+  app: swe1Project
+  env: dishaenv
+  bucket_name: elasticbeanstalk-us-east-2-639584540069
+  on:
+    repo: Dishagaonkar/tavis
+    branch: main
+  skip_cleanup: 'true'
