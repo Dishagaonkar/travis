@@ -29,7 +29,7 @@ before_deploy:
   - unzip -l deploy.zip  # Verify contents
   - aws s3 cp deploy.zip s3://elasticbeanstalk-us-east-2-639584540069/
   - aws elasticbeanstalk create-application-version --application-name swe1Project --version-label "$VERSION_LABEL" --source-bundle S3Bucket=elasticbeanstalk-us-east-2-639584540069,S3Key=deploy.zip
-  - aws elasticbeanstalk update-environment --environment-name dishaenv --version-label "$VERSION_LABEL"
+  - aws elasticbeanstalk update-environment --environment-name travis-env --version-label "$VERSION_LABEL"
 
 
 
