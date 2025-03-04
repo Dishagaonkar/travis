@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     ".elasticbeanstalk.com",
     "localhost",
     "dishaenv.eba-ppwce3xa.us-east-2.elasticbeanstalk.com",
-    "travis-env.eba-ppwce3xa.us-east-2.elasticbeanstalk.com"
+    "travis-env.eba-ppwce3xa.us-east-2.elasticbeanstalk.com",
 ]
 
 
