@@ -22,6 +22,7 @@ after_scripts:
 
 
 before_deploy:
+
   - zip -r deploy.zip .  # Package the full project
   - ls -lh deploy.zip  # Check ZIP file size
   - unzip -l deploy.zip  # List contents of ZIP for debugging
@@ -31,6 +32,11 @@ before_deploy:
   - aws configure set default.region "us-east-2"
   - aws configure list
   - aws s3 ls s3://elasticbeanstalk-us-east-2-639584540069/
+  - export VERSION_LABEL="travis-$(date +%Y%m%d%H%M%S)"  # Generates a unique version
+  - aws elasticbeanstalk create-application-version \
+      --application-name swe1Project \
+      --version-label "$VERSION_LABEL" \
+      --source-bundle S3Bucket=elasticbeanstalk-us-east-2-639584540069,S3Key=deploy.zip
 
 
 
@@ -47,5 +53,6 @@ deploy:
     repo: Dishagaonkar/travis
     branch: main
   skip_cleanup: 'true'
+  version_label: "$VERSION_LABEL"
 
 
