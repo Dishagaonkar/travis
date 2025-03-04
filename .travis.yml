@@ -2,5 +2,17 @@ language: python
 
 install:
   - pip install -r requirements.txt
-script:
-  - pytest
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ID
+  secret_access_key: $AWS_KEY
+  region: us-east-2
+  app: swe1Project
+  env: travis-env
+  bucket_name: elasticbeanstalk-us-east-2-639584540069
+  on:
+    repo: Dishagaonkar/travis
+    branch: main
+  skip_cleanup: 'true'
+
