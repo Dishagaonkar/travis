@@ -22,14 +22,14 @@ after_scripts:
 
 
 
-before_deploy:
-  - zip -r deploy.zip .
-  - pip install awscli  # Ensure AWS CLI is installed
-  - aws configure set aws_access_key_id "$AWS_ID"
-  - aws configure set aws_secret_access_key "$AWS_KEY"
-  - aws configure set default.region "us-east-2"
-  - aws configure list  # Debugging: Check if AWS credentials are set
-  - ls -lh deploy.zip  # Debugging: Verify ZIP file exists
+# before_deploy:
+#   - zip -r deploy.zip .
+#   - pip install awscli  # Ensure AWS CLI is installed
+#   - aws configure set aws_access_key_id "$AWS_ID"
+#   - aws configure set aws_secret_access_key "$AWS_KEY"
+#   - aws configure set default.region "us-east-2"
+#   - aws configure list  # Debugging: Check if AWS credentials are set
+#   - ls -lh deploy.zip  # Debugging: Verify ZIP file exists
 
 
 
@@ -40,7 +40,7 @@ deploy:
   secret_access_key: $AWS_KEY
   region: us-east-2
   app: swe1Project
-  env: dishaenv
+  env: travis-env
   bucket_name: elasticbeanstalk-us-east-2-639584540069
   on:
     repo: Dishagaonkar/travis
